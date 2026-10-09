@@ -1,0 +1,12 @@
+{
+  "name": "ProfeIA",
+  "description": "Plataforma de apoio educacional híbrido com Inteligência Artificial, tutoria por voz e vídeo em tempo real, nivelamento adaptativo e gestão pedagógica para alunos e professores.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
+

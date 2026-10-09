@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   PROFEIA - ANIMAÇÕES CSS BASEADAS EM ESTADOS (IDLE, TALKING, THINKING)
+   APLICADAS DIRETAMENTE NO ELEMENTO <img> DO ROBÔ 3D TUTORIA
+   ========================================================================== */
+
+/* 1. MODO IDLE — Postura estável e brilho neon calmo (sem scale ou compressão do corpo) */
+@keyframes tutoria-img-idle-keyframes {
+  0%,
+  100% {
+    transform: translate3d(0px, 0px, 0px);
+    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.28))
+      drop-shadow(0 0 36px rgba(16, 185, 129, 0.14));
+  }
+  50% {
+    transform: translate3d(0px, -2px, 0px);
+    filter: drop-shadow(0 0 26px rgba(56, 189, 248, 0.38))
+      drop-shadow(0 0 44px rgba(16, 185, 129, 0.2));
+  }
+}
+
+/* 2. MODO TALKING — Proporções e geometria 100% estáveis durante toda a fala */
+@keyframes tutoria-img-talking-keyframes {
+  0%,
+  100% {
+    transform: translate3d(0px, 0px, 0px);
+    filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.45))
+      drop-shadow(0 0 44px rgba(16, 185, 129, 0.26));
+  }
+  50% {
+    transform: translate3d(0px, -2px, 0px);
+    filter: drop-shadow(0 0 32px rgba(56, 189, 248, 0.62))
+      drop-shadow(0 0 56px rgba(16, 185, 129, 0.36));
+  }
+}
+
+/* 3. MODO THINKING — Postura contemplativa estável enquanto processa a resposta */
+@keyframes tutoria-img-thinking-keyframes {
+  0%,
+  100% {
+    transform: translate3d(0px, 0px, 0px);
+    filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.36))
+      drop-shadow(0 0 40px rgba(245, 158, 11, 0.2));
+  }
+  50% {
+    transform: translate3d(0px, -2px, 0px);
+    filter: drop-shadow(0 0 28px rgba(56, 189, 248, 0.48))
+      drop-shadow(0 0 50px rgba(245, 158, 11, 0.28));
+  }
+}
+
+/* Variações sutis de gestos contextuais durante o estado TALKING no <img> (sem deformação) */
+@keyframes tutoria-img-talking-highlighting {
+  0%,
+  100% {
+    transform: translate3d(0px, 0px, 0px);
+    filter: drop-shadow(0 0 26px rgba(56, 189, 248, 0.48))
+      drop-shadow(0 0 48px rgba(16, 185, 129, 0.3));
+  }
+  50% {
+    transform: translate3d(0px, -2px, 0px);
+    filter: drop-shadow(0 0 36px rgba(56, 189, 248, 0.68))
+      drop-shadow(0 0 64px rgba(16, 185, 129, 0.42));
+  }
+}
+
+@keyframes tutoria-img-talking-questioning {
+  0%,
+  100% {
+    transform: translate3d(0px, 0px, 0px);
+  }
+  50% {
+    transform: translate3d(0px, -2px, 0px);
+  }
+}
+
+/* Classes de estado aplicadas diretamente na tag <img> do robô TutorIA */
+.tutoria-img-base {
+  transform-origin: 50% 62%;
+  will-change: transform, filter;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease;
+}
+
+.tutoria-img-idle {
+  animation: tutoria-img-idle-keyframes 4.2s ease-in-out infinite;
+}
+
+.tutoria-img-talking {
+  animation: tutoria-img-talking-keyframes 2.35s ease-in-out infinite;
+}
+
+.tutoria-img-thinking {
+  animation: tutoria-img-thinking-keyframes 2.8s ease-in-out infinite;
+}
+
+/* Modificadores de gesto contextual no <img> quando em estado TALKING */
+.tutoria-img-talking.tutoria-gesture-highlighting {
+  animation: tutoria-img-talking-highlighting 2.1s ease-in-out infinite;
+}
+
+.tutoria-img-talking.tutoria-gesture-questioning {
+  animation: tutoria-img-talking-questioning 2.3s ease-in-out infinite;
+}
+
+/* Efeitos sutis de brilho neon e respiração no painel escuro traseiro */
+@keyframes tutoria-neon-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.98);
+    filter: blur(28px);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+    filter: blur(34px);
+  }
+}
+
+@keyframes tutoria-border-neon-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 0 25px rgba(14, 165, 233, 0.22),
+      0 0 55px rgba(16, 185, 129, 0.12),
+      inset 0 0 22px rgba(14, 165, 233, 0.14);
+    border-color: rgba(56, 189, 248, 0.32);
+  }
+  50% {
+    box-shadow:
+      0 0 38px rgba(14, 165, 233, 0.38),
+      0 0 75px rgba(16, 185, 129, 0.22),
+      inset 0 0 30px rgba(16, 185, 129, 0.2);
+    border-color: rgba(52, 211, 153, 0.52);
+  }
+}
+
+@keyframes tutoria-speaking-neon-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 0 34px rgba(56, 189, 248, 0.42),
+      0 0 75px rgba(16, 185, 129, 0.28),
+      inset 0 0 28px rgba(56, 189, 248, 0.24);
+    border-color: rgba(56, 189, 248, 0.58);
+  }
+  50% {
+    box-shadow:
+      0 0 52px rgba(56, 189, 248, 0.62),
+      0 0 98px rgba(16, 185, 129, 0.42),
+      inset 0 0 38px rgba(16, 185, 129, 0.32);
+    border-color: rgba(52, 211, 153, 0.78);
+  }
+}
+
+.tutoria-neon-aura {
+  animation: tutoria-neon-glow-pulse 4.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.tutoria-neon-frame {
+  animation: tutoria-border-neon-breathe 4.2s ease-in-out infinite;
+}
+
+[data-character-state="TALKING"] .tutoria-neon-frame {
+  animation: tutoria-speaking-neon-breathe 2.2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   iOS FACE ID BIOMETRIC SCAN & CHECK CONFIRMATION KEYFRAMES
+   ========================================================================== */
+
+@keyframes faceid-scan-sweep {
+  0% {
+    top: 8%;
+    opacity: 0.2;
+  }
+  50% {
+    top: 88%;
+    opacity: 1;
+  }
+  100% {
+    top: 8%;
+    opacity: 0.2;
+  }
+}
+
+@keyframes faceid-brackets-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes faceid-check-circle-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes faceid-check-stroke {
+  0% {
+    stroke-dashoffset: 48;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.faceid-scan-line {
+  animation: faceid-scan-sweep 0.95s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.faceid-brackets-active {
+  animation: faceid-brackets-pulse 0.75s ease-in-out infinite;
+}
+
+.faceid-check-badge {
+  animation: faceid-check-circle-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.faceid-check-path {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: faceid-check-stroke 0.38s 0.12s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
